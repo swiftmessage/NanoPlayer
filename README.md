@@ -62,7 +62,7 @@ HTML (UMD):
 <script>
   new NanoPlayer('#player', {
     src: 'video.mp4',
-    poster: 'poster.jpg'
+    poster: 'poster.jpg' // необязательно
   })
 </script>
 ```
