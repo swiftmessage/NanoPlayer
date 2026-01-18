@@ -1,0 +1,25 @@
+{
+  "name": "nanoplayer",
+  "version": "0.1.0",
+  "description": "NanoPlayer — lightweight vanilla JavaScript video player",
+  "main": "dist/nanoplayer.umd.js",
+  "module": "dist/nanoplayer.es.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "video",
+    "player",
+    "html5",
+    "vanilla-js",
+    "nano"
+  ],
+  "author": "SWIFTMESSAGE",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
