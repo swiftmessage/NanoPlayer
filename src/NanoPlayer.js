@@ -53,7 +53,9 @@ export default class NanoPlayer {
     this.bigPlay.className = 'nano-big-play'
     this.bigPlay.textContent = '▶'
 
-    
+    this.infoOverlay = document.createElement('div')
+    this.infoOverlay.className = 'nano-info-overlay'
+    this.infoOverlay.textContent = ''
 
     this.overlay.append(this.bigPlay, this.infoOverlay)
     this.wrapper.appendChild(this.overlay)

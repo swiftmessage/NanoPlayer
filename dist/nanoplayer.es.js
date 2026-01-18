@@ -17,7 +17,7 @@ class l {
   }
   /* ================= OVERLAY ================= */
   createOverlay() {
-    this.overlay = document.createElement("div"), this.overlay.className = "nano-overlay", this.bigPlay = document.createElement("button"), this.bigPlay.className = "nano-big-play", this.bigPlay.textContent = "▶", this.overlay.append(this.bigPlay, this.infoOverlay), this.wrapper.appendChild(this.overlay), this.bigPlay.onclick = () => this.video.play();
+    this.overlay = document.createElement("div"), this.overlay.className = "nano-overlay", this.bigPlay = document.createElement("button"), this.bigPlay.className = "nano-big-play", this.bigPlay.textContent = "▶", this.infoOverlay = document.createElement("div"), this.infoOverlay.className = "nano-info-overlay", this.infoOverlay.textContent = "", this.overlay.append(this.bigPlay, this.infoOverlay), this.wrapper.appendChild(this.overlay), this.bigPlay.onclick = () => this.video.play();
   }
   /* ================= CONTROLS ================= */
   createControls() {
