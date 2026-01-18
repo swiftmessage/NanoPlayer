@@ -7,6 +7,7 @@ export default class NanoPlayer {
 
     this.options = {
       src: '',
+      name: '',
       poster: null,
       autoplay: false,
       volume: 1,
@@ -78,6 +79,11 @@ export default class NanoPlayer {
     this.playBtn.textContent = '▶'
     this.left.appendChild(this.playBtn)
 
+    this.timeDisplay = document.createElement('div')
+    this.timeDisplay.className = 'nano-time'
+    this.timeDisplay.textContent = '0:00 / 0:00'
+    this.left.appendChild(this.timeDisplay)
+
     /* CENTER */
     this.center = document.createElement('div')
     this.center.className = 'nano-center'
@@ -117,10 +123,14 @@ export default class NanoPlayer {
 
     /* Info menu */
     this.infoMenu = this.createMenu('ℹ️')
+    const nameLine = this.options.name
+      ? `Название: ${this.options.name}<br>`
+      : ''
     this.infoMenu.menu.innerHTML = `
       <strong>NanoPlayer</strong><br>
-      Version 0.1.6<br>
-      MIT License
+      ${nameLine}
+      Version 0.1.7<br>
+      Apache-2.0 License
       swiftmessage.org
       github.com/swiftmessage/NanoPlayer
     `
@@ -147,6 +157,9 @@ export default class NanoPlayer {
       this.video.paused ? this.video.play() : this.video.pause()
 
     this.progress.onclick = e => {
+      if (!Number.isFinite(this.video.duration) || this.video.duration <= 0) {
+        return
+      }
       const r = this.progress.getBoundingClientRect()
       this.video.currentTime =
         ((e.clientX - r.left) / r.width) * this.video.duration
@@ -203,6 +216,7 @@ export default class NanoPlayer {
         this.video.currentTime = 0.1
         this.video.pause()
       }
+      this.updateTime()
     })
 
     /* Play / Pause */
@@ -217,9 +231,7 @@ export default class NanoPlayer {
 
     /* Progress */
     this.video.addEventListener('timeupdate', () => {
-      const p =
-        (this.video.currentTime / this.video.duration) * 100
-      this.progressFill.style.width = `${p}%`
+      this.updateTime()
     })
 
     /* ⌨️ Space = play / pause */
@@ -240,6 +252,37 @@ export default class NanoPlayer {
         !!document.fullscreenElement
       )
     })
+  }
+
+  /* ================= TIME ================= */
+
+  updateTime() {
+    const duration = Number.isFinite(this.video.duration)
+      ? this.video.duration
+      : 0
+    const current = Number.isFinite(this.video.currentTime)
+      ? this.video.currentTime
+      : 0
+    const progress =
+      duration > 0 ? (current / duration) * 100 : 0
+
+    this.progressFill.style.width = `${progress}%`
+    this.timeDisplay.textContent = `${this.formatTime(current)} / ${this.formatTime(duration)}`
+  }
+
+  formatTime(seconds) {
+    const total = Math.max(0, Math.floor(seconds || 0))
+    const hours = Math.floor(total / 3600)
+    const minutes = Math.floor((total % 3600) / 60)
+    const secs = total % 60
+    const paddedSecs = String(secs).padStart(2, '0')
+
+    if (hours > 0) {
+      const paddedMins = String(minutes).padStart(2, '0')
+      return `${hours}:${paddedMins}:${paddedSecs}`
+    }
+
+    return `${minutes}:${paddedSecs}`
   }
 
   /* ================= FULLSCREEN ================= */

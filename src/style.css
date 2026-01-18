@@ -111,6 +111,13 @@
   gap: 6px;
 }
 
+.nano-time {
+  color: var(--nano-muted);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  min-width: 84px;
+}
+
 .nano-icon {
   background: none;
   border: none;
