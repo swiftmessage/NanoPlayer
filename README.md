@@ -29,6 +29,25 @@ NanoPlayer — лёгкий, dependency-free HTML5 видеоплеер на ч�
 ```
 npm install nanoplayer
 ```
+
+В html
+```
+<link rel="stylesheet" href="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.css">
+<script src="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.umd.js"></script>
+```
+Допольнительный cdn
+```
+https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.umd.js
+https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.css
+```
+ES модули 
+```
+https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.es.js
+https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.css
+
+https:/unpkg.com/nanoplayer@latest/dist/nanoplayer.es.js
+https:/unpkg.com/nanoplayer@latest/dist/nanoplayer.css
+```
 ---
 
 ## Быстрый старт
