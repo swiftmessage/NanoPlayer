@@ -119,7 +119,7 @@ export default class NanoPlayer {
     this.infoMenu = this.createMenu('ℹ️')
     this.infoMenu.menu.innerHTML = `
       <strong>NanoPlayer</strong><br>
-      Version 0.1.0<br>
+      Version 0.1.6<br>
       MIT License
       swiftmessage.org
       github.com/swiftmessage/NanoPlayer
