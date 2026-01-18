@@ -3,6 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>NanoPlayer Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page-bg: #0b0d10;
+      --page-accent: #ffb703;
+      --page-text: #f7f7f7;
+      --page-muted: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px 48px;
+      background:
+        radial-gradient(900px 500px at 15% -10%, rgba(33, 158, 188, 0.25), transparent 50%),
+        radial-gradient(800px 400px at 110% 10%, rgba(255, 183, 3, 0.25), transparent 45%),
+        var(--page-bg);
+      color: var(--page-text);
+      font-family: "Space Grotesk", "Segoe UI", Tahoma, sans-serif;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(26px, 4vw, 36px);
+      letter-spacing: 0.02em;
+    }
+
+    #player {
+      width: min(860px, 92vw);
+      display: grid;
+      gap: 10px;
+    }
+
+    #player::before {
+      content: "Live Demo";
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--page-muted);
+    }
+  </style>
 
 </head>
 <body>
@@ -12,7 +61,9 @@
 <div id="player"></div>
 
   <link rel="stylesheet" href="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.css">
-<script src="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.umd.js"></script>
+   <!-- <link rel="stylesheet" href="/dist/nanoplayer.css"> -->
+<!-- <script src="/dist/nanoplayer.umd.js"></script> -->
+ <script src="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.umd.js"></script>
 <script>
   new NanoPlayer('#player', {
     src: 'video.mp4'
