@@ -26,15 +26,15 @@ NanoPlayer — лёгкий, dependency-free HTML5 видеоплеер на ч�
 ## Установка
 
 Через npm:
-
+```
 npm install nanoplayer
-
+```
 ---
 
 ## Быстрый старт
 
 HTML (UMD):
-
+```
 <link rel="stylesheet" href="dist/style.css">
 
 <div id="player"></div>
@@ -46,18 +46,18 @@ HTML (UMD):
     poster: 'poster.jpg'
   })
 </script>
-
+```
 ---
 
 ES Modules:
-
+```
 import NanoPlayer from 'nanoplayer'
 import 'nanoplayer/dist/style.css'
 
 new NanoPlayer('#player', {
   src: 'video.mp4'
 })
-
+```
 Важно: ES-модули должны запускаться через HTTP-сервер, не file://
 
 ---
@@ -120,7 +120,9 @@ nanoplayer/
 ├── src/  
 │   ├── NanoPlayer.js  
 │   └── index.js  
+│   └── style.css  
 ├── dist/  
 │   ├── nanoplayer.umd.js  
-│   └── nanoplayer.es.js  
-├── style.css  
+│   └── nanoplayer.es.js 
+│   └── nanoplayer.umd.js  
+
