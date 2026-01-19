@@ -1,6 +1,6 @@
 {
   "name": "nanoplayer",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "NanoPlayer — lightweight vanilla JavaScript video player",
   "main": "dist/nanoplayer.umd.js",
   "module": "dist/nanoplayer.es.js",
