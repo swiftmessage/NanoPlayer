@@ -1,148 +1,289 @@
-# NanoPlayer 🎬
+# 🎬 NanoPlayer
 
-NanoPlayer — лёгкий, dependency-free HTML5 видеоплеер на чистом JavaScript  
-с интерфейсом в стиле YouTube.
+> Лёгкий HTML5-видеоплеер на чистом JavaScript — без зависимостей и без встроенных native controls.
 
-Проект создаётся как open-source и подходит как для личных,
-так и для коммерческих проектов.
+[![npm](https://img.shields.io/npm/v/nanoplayer?style=flat-square&logo=npm)](https://www.npmjs.com/package/nanoplayer)
+[![license](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square)](./LICENSE)
+[![Vite](https://img.shields.io/badge/build-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=111)](https://developer.mozilla.org/docs/Web/JavaScript)
 
----
-
-## Возможности
-
-- Play / Pause (кнопка и пробел)
-- Превью видео (poster или первый кадр автоматически)
-- Прогресс и перемотка
-- Громкость (выпадающее меню)
-- Скорость воспроизведения
-- Информация о плеере
-- Полноэкранный режим
-- Управление с клавиатуры
-- Кастомный UI (без native controls)
-- Без зависимостей
+**NanoPlayer** — компактный кастомный видеоплеер для веб-приложений. Он строится поверх обычного HTML5 `<video>`, но предоставляет собственный UI в стиле современных видеоплееров.
 
 ---
 
-## Установка
+## ✨ Возможности
 
-Через npm:
-```
+- ▶️ Play / Pause
+- 🖼️ Poster или автоматический кадр из видео
+- 📈 Полоса прогресса и перемотка кликом
+- 🔊 Громкость и ползунок громкости
+- ⚙️ Выбор скорости воспроизведения
+- ℹ️ Информационное меню
+- ⛶ Полноэкранный режим
+- ⌨️ Управление клавиатурой
+- 🎨 Полностью кастомный интерфейс без native controls
+- 📦 Без runtime-зависимостей
+- 🌐 UMD и ES Module сборки
+
+---
+
+## 🚀 Установка
+
+### npm
+
+```bash
 npm install nanoplayer
 ```
 
-В html
-```
+### CDN
+
+#### UMD
+
+```html
 <link rel="stylesheet" href="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.css">
 <script src="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.umd.js"></script>
 ```
-Допольнительный cdn
+
+#### ES Module
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/nanoplayer@latest/dist/nanoplayer.css">
+
+<script type="module">
+  import NanoPlayer from 'https://unpkg.com/nanoplayer@latest/dist/nanoplayer.es.js'
+</script>
 ```
+
+Можно использовать и jsDelivr:
+
+```text
 https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.umd.js
-https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.css
-```
-ES модули 
-```
 https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.es.js
 https://cdn.jsdelivr.net/npm/nanoplayer@latest/dist/nanoplayer.css
-
-https:/unpkg.com/nanoplayer@latest/dist/nanoplayer.es.js
-https:/unpkg.com/nanoplayer@latest/dist/nanoplayer.css
 ```
+
 ---
 
-## Быстрый старт
+## ⚡ Быстрый старт
 
-HTML (UMD):
-```
-<link rel="stylesheet" href="dist/style.css">
+Создайте контейнер:
 
+```html
 <div id="player"></div>
+```
 
+Подключите стили и UMD-сборку:
+
+```html
+<link rel="stylesheet" href="dist/nanoplayer.css">
 <script src="dist/nanoplayer.umd.js"></script>
+```
+
+Инициализируйте плеер:
+
+```html
 <script>
   new NanoPlayer('#player', {
     src: 'video.mp4',
     poster: 'poster.jpg',
-    name: 'videoname' // необязательно
+    name: 'Моё видео'
   })
 </script>
 ```
----
 
-ES Modules:
-```
+### ES Modules
+
+```js
 import NanoPlayer from 'nanoplayer'
-import 'nanoplayer/dist/style.css'
+import 'nanoplayer/dist/nanoplayer.css'
 
 new NanoPlayer('#player', {
   src: 'video.mp4'
 })
 ```
-Важно: ES-модули должны запускаться через HTTP-сервер, не file://
+
+> Для ES-модулей используйте HTTP/HTTPS-сервер. Запуск через `file://` не подходит для браузерных module imports.
 
 ---
 
-## Параметры
+## ⚙️ Параметры
 
+Плеер создаётся так:
+
+```js
 new NanoPlayer(selector, options)
+```
 
-options:
+Доступные параметры:
 
-- src (string) — путь к видео
-- poster (string | null) — превью (если не указано, берётся первый кадр)
-- autoplay (boolean) — автозапуск
-- volume (number) — громкость (0–1)
-- playbackRates (number[]) — доступные скорости
+| Параметр | Тип | По умолчанию | Описание |
+|---|---|---:|---|
+| `src` | `string` | `''` | URL или путь к видео |
+| `name` | `string` | `''` | Название видео для информационного меню |
+| `poster` | `string \| null` | `null` | Изображение-превью |
+| `autoplay` | `boolean` | `false` | Автоматически начать воспроизведение |
+| `volume` | `number` | `1` | Начальная громкость от `0` до `1` |
+| `playbackRates` | `number[]` | `[0.5, 1, 1.5, 2]` | Доступные скорости |
+
+Пример с настройками:
+
+```js
+new NanoPlayer('#player', {
+  src: 'video.mp4',
+  poster: 'poster.jpg',
+  name: 'Demo',
+  autoplay: false,
+  volume: 0.8,
+  playbackRates: [0.5, 1, 1.25, 1.5, 2]
+})
+```
 
 ---
 
-## Управление с клавиатуры
+## ⌨️ Управление с клавиатуры
 
-- Space — Play / Pause
-- Esc — выход из fullscreen
+| Клавиша | Действие |
+|---|---|
+| `Space` | Play / Pause |
+| `Esc` | Выход из полноэкранного режима |
 
-Пробел не перехватывается, если фокус находится в input, textarea или select.
+Пробел не перехватывается внутри `input`, `textarea` и `select`.
 
 ---
 
-## Стилизация
+## 🎨 Стилизация
 
-NanoPlayer не влияет на глобальные стили страницы.  
-Все CSS-классы имеют префикс nano-.
+Все классы плеера используют префикс `nano-`, поэтому NanoPlayer не должен конфликтовать с большинством стилей вашего приложения.
+
+Например:
+
+```css
+.nano-player {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nano-controls {
+  /* кастомизация панели управления */
+}
+```
 
 Можно:
-- переопределять стили
-- писать собственные темы
-- полностью заменить style.css
+
+- переопределять отдельные CSS-классы;
+- создавать собственные темы;
+- полностью заменять таблицу стилей;
+- встраивать плеер в собственный дизайн.
 
 ---
 
-## Архитектура
+## 🧩 Архитектура
 
-.nano-player  
-├── video  
-├── overlay (big play + info)  
-├── controls  
-│   ├── left (play)  
-│   ├── center (progress)  
-│   └── right (menus)  
-│       ├── volume  
-│       ├── settings  
-│       └── info  
+NanoPlayer использует обычный HTML5 `<video>` и поверх него создаёт собственный интерфейс:
 
-Каждое меню — отдельный popover, как в YouTube.
+```text
+nano-player
+├── video
+├── overlay
+│   ├── big play
+│   └── info overlay
+└── controls
+    ├── left
+    │   ├── play
+    │   └── time
+    ├── center
+    │   └── progress
+    └── right
+        ├── volume
+        ├── settings
+        ├── info
+        └── fullscreen
+```
+
+Каждое дополнительное меню реализовано как отдельный popover.
 
 ---
 
-## Структура проекта
+## 📁 Структура проекта
 
-nanoplayer/  
-├── src/  
-│   ├── NanoPlayer.js  
-│   └── index.js  
-│   └── style.css  
-├── dist/  
-│   ├── nanoplayer.umd.js  
-│   └── nanoplayer.es.js 
-│   └── nanoplayer.umd.js  
+```text
+NanoPlayer/
+├── src/
+│   ├── NanoPlayer.js   # основная логика плеера
+│   ├── index.js        # публичный entry point
+│   └── style.css       # стили UI
+├── dist/
+│   ├── nanoplayer.es.js
+│   ├── nanoplayer.umd.js
+│   └── nanoplayer.css
+├── test/
+│   └── demo.html       # демонстрационная страница
+├── package.json
+├── vite.config.js
+├── LICENSE
+└── README.md
+```
 
+---
+
+## 🛠️ Разработка
+
+Установите зависимости:
+
+```bash
+npm install
+```
+
+Соберите библиотеку:
+
+```bash
+npm run build
+```
+
+После сборки артефакты появляются в директории `dist/`.
+
+---
+
+## 🌐 Демо
+
+В репозитории есть простая демонстрационная страница:
+
+**[`test/demo.html`](./test/demo.html)**
+
+Она показывает базовую инициализацию NanoPlayer через CDN.
+
+---
+
+## 📦 Форматы сборки
+
+Vite собирает библиотеку в двух форматах:
+
+- **ES Module** — `dist/nanoplayer.es.js`
+- **UMD** — `dist/nanoplayer.umd.js`
+
+Стили поставляются отдельно:
+
+- **CSS** — `dist/nanoplayer.css`
+
+---
+
+## 📝 Лицензия
+
+Проект распространяется по лицензии **Apache License 2.0**.
+
+Полный текст лицензии находится в файле [LICENSE](./LICENSE).
+
+---
+
+## 👨‍💻 Автор
+
+**SWIFTMESSAGE**
+
+- 🌐 [swiftmessage.org](https://swiftmessage.org)
+- 💻 [GitHub](https://github.com/swiftmessage)
+
+---
+
+<p align="center">
+  Сделано для тех, кому нужен простой кастомный HTML5-плеер без лишних зависимостей.
+</p>
